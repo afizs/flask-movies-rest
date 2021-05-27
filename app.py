@@ -1,10 +1,13 @@
-from flask import Flask
+from flask import Flask, render_template
 
-app = Flask(__name__) 
+app = Flask(__name__)
+
 
 @app.route('/<name>')
-def index(name: str = 'Afiz'):
-    return f'<h2>Hello {name.capitalize()}!</h2>'
+@app.route('/')
+def index(name: str = 'world'):
+    return render_template('index.html', name=name.capitalize())
+
 
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0', port=2345)
